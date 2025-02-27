@@ -1,5 +1,5 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import axios from "axios";
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -14,13 +14,24 @@ import ListaPosts from "./pages/ListaPosts";
 
 function App() {
 
+  const [post, setPost] = useState([]);
+
+  function fetchPosts() {
+    axios.get("http://localhost:3000/posts")
+      .then((res) =>
+        setPost(res.data)
+
+      )
+  }
+
+  useEffect(fetchPosts, []);
 
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route element={<DefaultLayout />}>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage postProp={post} />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/posts" >

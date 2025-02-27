@@ -1,12 +1,12 @@
 import Header from "./../components/Header";
-import Footer from "./../components/Footer";
+import PostsListUser from "./../components/PostsListUser";
 
-export default function HomePage() {
+export default function HomePage(props) {
     return (
         <>
 
             <h1>HOMEPAGE</h1>
-
+            <PostsListUser postPropProps={props.postProp} />
         </>
 
     );
