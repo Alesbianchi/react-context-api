@@ -1,10 +1,11 @@
-
+import { useContext } from "react";
+import GlobalContext from "./../contexts/GlobalContext";
 
 import PostsCard from "./PostsCard";
 
-const PostsListUser = (props) => {
+const PostsListUser = () => {
 
-
+    const { post } = useContext(GlobalContext);
 
     return (
 
@@ -13,7 +14,7 @@ const PostsListUser = (props) => {
 
             {
 
-                props.postPropProps.map((post) => (
+                post.map((post) => (
                     <PostsCard key={post.id} post={post} />
 
                 ))

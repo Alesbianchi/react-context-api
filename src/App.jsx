@@ -3,6 +3,8 @@ import axios from "axios";
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import GlobalContext from "./contexts/GlobalContext";
+
 import DefaultLayout from "./layouts/DefaultLayout";
 
 import HomePage from './pages/HomePage';
@@ -27,11 +29,11 @@ function App() {
   useEffect(fetchPosts, []);
 
   return (
-    <>
+    <GlobalContext.Provider value={{ post }}>
       <BrowserRouter>
         <Routes>
           <Route element={<DefaultLayout />}>
-            <Route path="/" element={<HomePage postProp={post} />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/posts" >
@@ -41,7 +43,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </GlobalContext.Provider >
   )
 }
 
